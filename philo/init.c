@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:41:37 by andvieir          #+#    #+#             */
-/*   Updated: 2023/04/24 12:19:27 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/04/28 09:25:18 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	data_init(t_data *data, int ac, char **av)
 	data->one_died = 0;
 	data->all_eaten = 0;
 	data->n_tte = -1;
+	mutex_init(&data->print);
+	mutex_init(&data->god_shield);
 	if (ac == 6)
 		data->n_tte = ft_atoi(av[5]);
 	if (!data->num_phi || !data->n_tte)
@@ -38,12 +40,9 @@ void	fork_init(t_data *data)
 	while (i < data->num_phi)
 	{
 		data->fork[i].id = i + 1;
-		if (pthread_mutex_init(&data->fork[i].lock, NULL) != 0)
-			error("Mutex lock init fail\n");
+		mutex_init(&data->fork[i].lock);
 		i++;
 	}
-	if (pthread_mutex_init(&data->print, NULL) != 0)
-		error("Mutex print init fail\n");
 }
 
 void	philo_init(t_data *data)
@@ -57,32 +56,12 @@ void	philo_init(t_data *data)
 		data->philo[i].index = i + 1;
 		data->philo[i].since_lm = get_time();
 		data->philo[i].l_fork = &data->fork[i];
-		data->philo[i].r_fork = &data->fork[(i + 1) % data->num_phi];
+		if (data->num_phi != 1)
+			data->philo[i].r_fork = &data->fork[(i + 1) % data->num_phi];
 		data->philo[i].data = data;
 		data->philo[i].n_eats = 0;
 		data->philo[i].full = 0;
-		if (pthread_mutex_init(&data->philo[i].reaper, NULL))
-			error("Failed init data->philo.reaper\n");
+		mutex_init(&data->philo[i].reaper);
 		i++;
 	}
-}
-
-int	valid_args(char **av)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (av[i])
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (!ft_isdigit(av[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
 }

@@ -6,26 +6,25 @@
 #    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 12:17:44 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/04 13:53:31 by andvieir         ###   ########.fr        #
+#    Updated: 2023/05/04 15:18:30 by andvieir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= philo
-HEADER		= phi.h
+NAME		= philo_bonus
+HEADER		= phi_bonus.h
 
 #----------DIRS----------#
 
-SRC =	init.c \
-	main.c \
-	states.c \
-	threads.c \
-	utils.c \
-	utils_libft.c \
-	mutex_utils.c \
-	routines.c \
-	god.c \
-	cleanup.c \
+SRC =	init_bonus.c \
+	main_bonus.c \
+	states_bonus.c \
+	processes_bonus.c \
+	utils_bonus.c \
+	utils_libft_bonus.c \
+	ft_itoa_bonus.c \
+	god_bonus.c \
+	cleanup_bonus.c \
 
 #--------COMMANDS--------#
 CC = cc
@@ -48,6 +47,7 @@ PROJECT =																	\
 \t				 |_|							\n	\
 "
 
+LG =
 
 #---------RULES---------#
 .c.o:
@@ -55,7 +55,7 @@ PROJECT =																	\
 
 all: 		$(NAME)
 			@clear
-			@echo "\033[1;32m\v\t\t\tCompiled without Fsanitizer!"
+			@echo "\033[1;32m\v\t\t\t\tCompiled!"
 			@echo "\033[0;36m"$(PROJECT)
 
 
