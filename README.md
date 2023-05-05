@@ -3,7 +3,7 @@
 Commit #3: May 5th 2023
 
 Finished project + bonus.
-Fixed all data races and deadlocks.
+Grade: 125/125;
 
 Mandatory:
 >> Application of threads on the philosophers themselves and also the monitor.
@@ -12,6 +12,16 @@ Mandatory:
 Bonus:
 >> Application on forks to divide the philosophers into multiple processes. Each process has it's own monitor.
 >> Use of semaphores to "communicate" between each process.
+
+Changes and Fixes:
+ - Fixed all data races and deadlocks;
+ - Removed fsanitize=thread flag from Makefile's CFLAGS (you need to add it to run the checks);
+
+Notes:
+ - Valgrind output is bugged, but memory checks are correct;
+ - Do not use valgrind when compiling with fsanitize, as it will show memory errors and may crash your computer;
+ - Do not test with more than 200 philosophers;
+ - Do not test with time values lower than 60ms.
 
 -----------------------------------------
 
