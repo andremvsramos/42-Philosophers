@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 12:17:44 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/04 15:18:30 by andvieir         ###   ########.fr        #
+#    Updated: 2023/08/20 15:08:47 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME		= philo_bonus
 HEADER		= phi_bonus.h

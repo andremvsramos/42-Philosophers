@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 12:49:03 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/04 15:24:46 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:08:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phi_bonus.h"
 
+/**
+ * @brief Initializes semaphores required for synchronization.
+ *
+ * This function initializes semaphores for controlling access to forks, detecting if one philosopher
+ * has died, controlling printing, tracking meals completion, and signaling simulation finish. It uses
+ * the num_phi value from the data structure to determine the number of forks needed.
+ *
+ * @param data A pointer to the main data structure.
+ * @return 1 if semaphore initialization fails, 0 if successful.
+ */
 int	semp_init(t_data *data)
 {
 	sem_unlink("finish");
@@ -31,6 +41,16 @@ int	semp_init(t_data *data)
 	return (0);
 }
 
+/**
+ * @brief Initializes philosopher-related data and semaphores.
+ *
+ * This function initializes the philosopher data structures, including their indices, data pointers,
+ * and meal counters. It also initializes semaphores for each philosopher's reaper to ensure exclusive
+ * access to their vital signs.
+ *
+ * @param data A pointer to the main data structure.
+ * @return 1 if memory allocation fails, 0 if successful.
+ */
 int	philo_init(t_data *data)
 {
 	int		i;
@@ -54,6 +74,18 @@ int	philo_init(t_data *data)
 	return (0);
 }
 
+/**
+ * @brief Initializes the main data structure and its components.
+ *
+ * This function initializes the main data structure with values obtained from command-line arguments.
+ * It allocates memory for storing philosopher PIDs and calls the `philo_init` and `semp_init` functions
+ * to set up philosopher-related data and synchronization semaphores.
+ *
+ * @param data A pointer to the main data structure.
+ * @param ac The number of command-line arguments.
+ * @param av An array of command-line argument strings.
+ * @return 1 if successful, 0 if memory allocation or semaphore initialization fails.
+ */
 int	data_init(t_data *data, int ac, char **av)
 {
 	data->time_init = get_time();

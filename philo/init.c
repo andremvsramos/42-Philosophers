@@ -3,15 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:41:37 by andvieir          #+#    #+#             */
-/*   Updated: 2023/04/28 09:25:18 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:51:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phi.h"
 
+/**
+ * @brief Initializes the shared data structure with input arguments.
+ *
+ * This function initializes the shared `t_data` structure by setting various
+ * fields using the input arguments from the command line. It also initializes
+ * mutexes used for printing and protection against concurrent operations.
+ * Returns 1 if data initialization is successful, 0 if an error occurs.
+ *
+ * @param data Pointer to the shared data structure.
+ * @param ac Number of command-line arguments.
+ * @param av Array of command-line argument strings.
+ * @return 1 if data initialization is successful, 0 if an error occurs.
+ */
 int	data_init(t_data *data, int ac, char **av)
 {
 	data->time_init = get_time();
@@ -31,6 +44,16 @@ int	data_init(t_data *data, int ac, char **av)
 	return (1);
 }
 
+/**
+ * @brief Initializes the forks for the dining philosophers simulation.
+ *
+ * This function initializes an array of `t_fork` structures representing
+ * the forks used by philosophers. It assigns each fork an ID and initializes
+ * a mutex lock associated with it. The total number of forks is determined
+ * by the number of philosophers specified in the shared data structure `data`.
+ *
+ * @param data Pointer to the shared data structure.
+ */
 void	fork_init(t_data *data)
 {
 	int	i;
@@ -45,6 +68,17 @@ void	fork_init(t_data *data)
 	}
 }
 
+/**
+ * @brief Initializes the philosophers for the dining philosophers simulation.
+ *
+ * This function initializes an array of `t_phi` structures representing the
+ * philosophers participating in the simulation. It assigns each philosopher
+ * an index, initializes mutex locks, and sets initial values for various fields.
+ * The left and right forks for each philosopher are assigned based on the
+ * total number of philosophers in the shared data structure `data`.
+ *
+ * @param data Pointer to the shared data structure.
+ */
 void	philo_init(t_data *data)
 {
 	int	i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phi.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:23:13 by andvieir          #+#    #+#             */
-/*   Updated: 2023/04/28 12:33:10 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:47:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,49 @@
 # include <limits.h>
 # include <sys/time.h>
 
+/**
+ * Structure representing a fork.
+ */
 typedef struct s_fork
 {
-	int				id;
-	pthread_mutex_t	lock;
+	int				id;                 // Identifier of the fork
+	pthread_mutex_t	lock;               // Mutex lock for synchronization
 }				t_fork;
 
+/**
+ * Structure representing a philosopher.
+ */
 typedef struct s_phi
 {
-	int				index;
-	long long		since_lm;
-	int				n_eats;
-	int				full;
-	pthread_t		phi;
-	pthread_mutex_t	reaper;
-	t_fork			*l_fork;
-	t_fork			*r_fork;
-	struct s_data	*data;
+	int				index;              // Index of the philosopher
+	long long		since_lm;           // Time since the philosopher's last meal
+	int				n_eats;             // Number of meals eaten by the philosopher
+	int				full;               // Flag indicating if the philosopher is full
+	pthread_t		phi;                // Philosopher's thread
+	pthread_mutex_t	reaper;             // Mutex for controlling the reaper
+	t_fork			*l_fork;            // Pointer to the left fork
+	t_fork			*r_fork;            // Pointer to the right fork
+	struct s_data	*data;              // Pointer to shared data
 }				t_phi;
 
+/**
+ * Structure representing shared data for the dining philosophers problem.
+ */
 typedef struct s_data
 {
-	int				num_phi;
-	int				ttd;
-	int				tte;
-	int				tts;
-	int				n_tte;
-	int				one_died;
-	int				all_eaten;
-	long long		time_init;
-	pthread_t		god;
-	pthread_mutex_t	print;
-	pthread_mutex_t	god_shield;
-	t_phi			*philo;
-	t_fork			*fork;
+	int				num_phi;            // Number of philosophers
+	int				ttd;                // Time to die (in milliseconds)
+	int				tte;                // Time to eat (in milliseconds)
+	int				tts;                // Time to sleep (in milliseconds)
+	int				n_tte;              // Number of times each philosopher must eat
+	int				one_died;           // Flag indicating if a philosopher has died
+	int				all_eaten;          // Flag indicating if all philosophers have eaten
+	long long		time_init;          // Initial time
+	pthread_t		god;                // "God" thread for monitoring philosophers
+	pthread_mutex_t	print;              // Mutex for synchronizing printing
+	pthread_mutex_t	god_shield;         // Mutex for protecting "God" thread
+	t_phi			*philo;              // Array of philosopher structures
+	t_fork			*fork;               // Array of fork structures
 }				t_data;
 
 //-------------ROUTINES----------------//

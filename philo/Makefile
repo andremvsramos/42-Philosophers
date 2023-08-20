@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 12:17:44 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/04 13:53:31 by andvieir         ###   ########.fr        #
+#    Updated: 2023/08/20 14:53:37 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME		= philo
 HEADER		= phi.h

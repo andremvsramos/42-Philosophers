@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phi_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 12:17:02 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/04 14:48:13 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/08/20 15:05:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # include <sys/stat.h>
 # include <signal.h>
 
+/**
+ * @brief Structure representing a philosopher in the dining philosophers problem.
+ *
+ * This structure holds information about an individual philosopher including their
+ * index, time since their last meal, number of eaten meals, and synchronization
+ * semaphore for reaping. It also stores a reference to the shared data structure.
+ */
 typedef struct s_phi
 {
 	int				index;
@@ -35,6 +42,14 @@ typedef struct s_phi
 	struct s_data	*data;
 }				t_phi;
 
+/**
+ * @brief Structure representing shared data for the dining philosophers problem.
+ *
+ * This structure holds the shared information required for the bonus part of the dining
+ * philosophers problem. It includes the number of philosophers, time to die, time to eat,
+ * time to sleep, maximum number of times a philosopher must eat, and other synchronization
+ * semaphores and flags.
+ */
 typedef struct s_data
 {
 	int				num_phi;
